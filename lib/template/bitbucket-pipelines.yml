@@ -1,0 +1,37 @@
+image: ruby:latest
+
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Main Pipeline
+          script:
+          - .bitbucket/bin/install
+          - .bitbucket/bin/terraspace up demo -y
+
+  pull-requests:
+    '**': # this runs as default for any branch not elsewhere defined
+      - step:
+          script:
+            - .bitbucket/bin/install
+            - .bitbucket/bin/terraspace plan demo
+
+  custom:
+    terraspace:
+      - variables:
+          - name: TS_ENV
+            default: prod
+            allowed-values:
+              - dev
+              - prod
+      - step:
+          name: plan
+          script:
+            - .bitbucket/bin/install
+            - .bitbucket/bin/terraspace plan demo
+      - step:
+          name: up
+          trigger: manual
+          script:
+            - .bitbucket/bin/install
+            - .bitbucket/bin/terraspace up demo -y
