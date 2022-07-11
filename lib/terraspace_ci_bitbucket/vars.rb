@@ -10,6 +10,7 @@ module TerraspaceCiBitbucket
         # urls
         pr_url: pr_url,
         build_url: build_url,
+        branch_url: branch_url,
         # additional properties
         build_type: build_type,   # required IE: pull_request or push
         pr_number: pr_number,  # set when build_type=pull_request
