@@ -14,7 +14,7 @@ Add gem to your Terraspace project
 
 Gemfile
 
-    gem terraspace_ci_bitbucket
+    gem "terraspace_ci_bitbucket"
 
 Then to install run
 
